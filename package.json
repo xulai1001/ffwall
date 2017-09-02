@@ -1,0 +1,24 @@
+{
+  "name": "ffwall",
+  "version": "1.0.0",
+  "description": "ffwall",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xulai1001/ffwall.git"
+  },
+  "author": "curran",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/xulai1001/ffwall/issues"
+  },
+  "homepage": "https://github.com/xulai1001/ffwall#readme",
+  "dependencies": {
+    "ejs": "^2.5.7",
+    "express": "^4.15.4",
+    "sqlite3": "^3.1.9"
+  }
+}

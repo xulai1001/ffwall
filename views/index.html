@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>FFWall</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://apps.bdimg.com/libs/html5shiv/r29/html5.min.js"></script>
+    <![endif]-->
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"> </script>
+    <script src="http://apps.bdimg.com/libs/jqueryui/1.10.4/jquery-ui.min.js"> </script>
+    <script src="http://apps.bdimg.com/libs/bootstrap/3.3.4/js/bootstrap.min.js"> </script>
+    <script src="https://vuejs.org/js/vue.js"> </script>
+
+    <!-- styles -->
+    <link rel="stylesheet" href="http://apps.bdimg.com/libs/todc-bootstrap/3.1.1-3.2.1/todc-bootstrap.min.css">
+    <link rel="stylesheet" href="http://apps.bdimg.com/libs/jqueryui/1.10.4/css/jquery-ui.min.css">
+    <!--<link href="css/style.css" rel="stylesheet"> -->
+ 
+</head>
+<body>
+    <div class="container">
+        <div class="jumbotron">
+            <div class="input_group">
+                <form method="get">
+                    <input name="chr_name" class="form-control" placeholder="角色名字" type="text" id="chr_name"/>
+                    <button type="button" class="button btn-primary btn-lg" id="btn_submit">提交</button>
+                </form>
+            </div>
+        </div>
+       <div id="character">
+            {{ chr.GroupName }} {{ chr.RoleName }}
+            <img v-bind:src="chr.SmallImage" />
+            <img v-bind:src="chr.BigImage" />
+       </div>
+    </div>
+
+    <script type="text/javascript">
+        $("#chr_name").autocomplete({
+            source: function(request, response) { 
+                var name = request.term.trim();
+                if (name && name.length >= 2)
+                    $.ajax({
+                        type: "GET",
+                        url: "query_name?q=" + name,
+                        async: true,
+                        success: function (res) {
+                            if (res) {
+                                response(res);
+                            }
+                            else response([]);
+                        }
+                    });
+                else
+                    response([]);
+            }
+        });
+        
+        var character = new Vue({
+            el: "#character",
+            data: { 
+                chr: {
+                    BigImage: "",
+                    SmallImage: "",
+                    GroupName: "",
+                    RoleName: ""
+                }
+            }
+        });
+
+        $("#btn_submit").click(function (){
+            var name = $("#chr_name").val();
+            $.ajax({
+                type: "GET",
+                url: "query_chr?q=" + name,
+                async: true,
+                success: function (res) {
+                    if (res && res["success"]) { character.chr = res; }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

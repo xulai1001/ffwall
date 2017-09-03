@@ -5,9 +5,14 @@ body {
 footer {
     color: #8D8A8A;
     text-align: center;
+    font-size: 12px;
     margin: 20px 0px;
     font-family: "Arial", "Microsoft YaHei", "黑体", "宋体", sans-serif;
     ;
+}
+
+footer p {
+    margin: 5px;
 }
 
 .container-fluid {
@@ -68,7 +73,6 @@ img {
     vertical-align: middle;
     border-radius: 5px;
     width: 20%;
-    float: right;
 }
 
 #chr_name {
@@ -92,6 +96,12 @@ img {
 #start_wrapper img {
     width: 100%;
     height: 100%;
+}
+
+#start_wrapper {
+    background: url("start.jpg") no-repeat;
+    width: 100%;
+    height: 1000px;
 }
 
 .main_wrapper {

@@ -42,6 +42,8 @@ $(document).ready(function() {
                 success: function(res) {
                     if (res && res["success"]) {
                         character.chr = res;
+                        $("#start_wrapper").css("display", "none");
+                        $(".main_wrapper").css("display", "block");
                     }
                 }
             });
@@ -57,6 +59,8 @@ $(document).ready(function() {
             success: function(res) {
                 if (res && res["success"]) {
                     character.chr = res;
+                    $("#start_wrapper").css("display", "none");
+                    $(".main_wrapper").css("display", "block");
                 }
             }
         });

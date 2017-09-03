@@ -53,7 +53,6 @@ $(document).ready(function() {
             } else { response([]); }
         },
         minChars: 1,
-        scrollHeight: 300,
         select: function(event, ui) { query_img(ui.item.value); } 
     });
 

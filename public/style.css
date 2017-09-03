@@ -138,3 +138,11 @@ h4 {
     text-align: center;
 }
 
+.ui-autocomplete {  
+    max-height: 300px;   
+    overflow-y: scroll; 
+    /* prevent horizontal scrollbar */  
+    overflow-x: hidden;   
+    padding-right: 20px;
+} 
+

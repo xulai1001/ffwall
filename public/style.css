@@ -17,6 +17,7 @@ footer {
 img {
     padding: 0px;
     border: 0px;
+    margin: 0px auto;
 }
 
 .thin {
@@ -119,10 +120,6 @@ img {
     padding: 15px;
     background: rgba(255, 255, 255, 0.2);
     border-radius: 10px;
-}
-
-img {
-    margin: 0px;
 }
 
 h4 {

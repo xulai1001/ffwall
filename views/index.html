@@ -15,22 +15,22 @@
     </script>
     <script src="http://apps.bdimg.com/libs/jqueryui/1.10.4/jquery-ui.min.js">
     </script>
-    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="https://cdn.staticfile.org/todc-bootstrap/3.3.7-3.3.7/js/bootstrap.min.js"></script>
     <script src="https://vuejs.org/js/vue.js">
     </script>
     <script language="JavaScript" src="index.js">
     </script>
     <!-- styles -->
-    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/todc-bootstrap/3.3.7-3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="http://apps.bdimg.com/libs/jqueryui/1.10.4/css/jquery-ui.min.css">
-    <link rel="stylesheet" type="text/css" href="/style.css" />
+    <link rel="stylesheet" type="text/css" href="style.css" />
 </head>
 
 <body>
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-4 col-xs-12 trans">
-                <div id="logo">FFX|V 照片墙</div>
+                <div id="logo">FFX|V照片墙</div>
                 <div class="input_group">
                     <div class="form-inline">
                         <input name="chr_name" class="form-control" placeholder="请输入角色名字" type="text" id="chr_name" />
@@ -61,13 +61,12 @@
                     <h4>{{ chr.RoleName }} </h4>
                 </div>
             </div>
-            <div class="flow"> <img v-bind:src="chr.BigImage" class="img-responsive" /> </div>
+            <div class="flow">
+                <img v-bind:src="bigimg" class="img-responsive" id="bigimg" />
+            </div>
         </div>
 
     </div>
-
-    <script type="text/javascript">
-    </script>
 </body>
 
 <footer>

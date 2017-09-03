@@ -21,24 +21,32 @@
     <!--<link href="css/style.css" rel="stylesheet"> -->
     <style type="text/css">
         body { background: #000 }
+        .thin { padding-left: 3px; padding-right: 3px; }
+        .left { width: 240px; float: left; }
+        .flow { overflow: hidden; }
+        .right-button { width: 120px; float: right; }
+        .trans { background: rgba(255, 255, 255, 0.2); border: 0px; color: #fff; }
+
     </style>
 </head>
 <body>
     <div class="container-fluid">
-        <div class="jumbotron">
-            <div class="input_group">
-                <form method="get" class="form-inline">
-                    <input name="chr_name" class="form-control" placeholder="角色名字" type="text" id="chr_name"/>
-                    <button type="button" class="button btn-primary" id="btn_submit">提交</button>
-                </form>
+        <div class="row">
+            <div class="well well-lg col-md-4 col-xs-12 trans">
+                <div class="input_group">
+                    <form method="get" class="form-inline">
+                        <input name="chr_name" class="form-control trans" placeholder="角色名字" type="text" id="chr_name"/>
+                        <button type="button" class="button btn-primary" id="btn_submit">提交</button>
+                    </form>
+                </div>
             </div>
         </div>
-        <div id="character" class="row">
-                <div class="col-md-2">
-                    <div class="col-md-12"> <img v-bind:src="chr.SmallImage" class="img-responsive"/> </div>
-                    <div class="col-md-12" style="color: #fff"> <h4>{{ chr.GroupName }} {{ chr.RoleName }}</h4> </div>
+        <div id="character">
+                <div class="left">
+                    <img v-bind:src="chr.SmallImage" class="img-responsive"/>
+                    <div style="color: #fff"> <h4>{{ chr.GroupName }} {{ chr.RoleName }}</h4> </div>
                 </div>
-                <div class="col-md-10"> <img v-bind:src="chr.BigImage" class="img-responsive"/> </div>
+                <div class="flow"> <img v-bind:src="chr.BigImage" class="img-responsive"/> </div>
         </div>
 
     </div>

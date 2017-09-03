@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
     <meta charset="UTF-8">
     <title>FFWall</title>
@@ -10,91 +11,47 @@
     <!--[if lt IE 9]>
       <script src="http://apps.bdimg.com/libs/html5shiv/r29/html5.min.js"></script>
     <![endif]-->
-    <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"> </script>
-    <script src="http://apps.bdimg.com/libs/jqueryui/1.10.4/jquery-ui.min.js"> </script>
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js">
+    </script>
+    <script src="http://apps.bdimg.com/libs/jqueryui/1.10.4/jquery-ui.min.js">
+    </script>
     <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-    <script src="https://vuejs.org/js/vue.js"> </script>
-
+    <script src="https://vuejs.org/js/vue.js">
+    </script>
+    <script language="JavaScript" src="index.js">
+    </script>
     <!-- styles -->
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" href="http://apps.bdimg.com/libs/jqueryui/1.10.4/css/jquery-ui.min.css">
-    <!--<link href="css/style.css" rel="stylesheet"> -->
-    <style type="text/css">
-        body { background: #000 }
-        .thin { padding-left: 3px; padding-right: 3px; }
-        .left { width: 240px; float: left; }
-        .flow { overflow: hidden; }
-        .right-button { width: 120px; float: right; }
-        .trans { background: rgba(255, 255, 255, 0.2); border: 0px; color: #fff; }
-
-    </style>
+    <link rel="stylesheet" type="text/css" href="/style.css" />
 </head>
+
 <body>
     <div class="container-fluid">
         <div class="row">
-            <div class="well well-lg col-md-4 col-xs-12 trans">
+            <div class="col-md-4 col-xs-12 trans">
                 <div class="input_group">
-                    <form method="get" class="form-inline">
-                        <input name="chr_name" class="form-control trans" placeholder="角色名字" type="text" id="chr_name"/>
-                        <button type="button" class="button btn-primary" id="btn_submit">提交</button>
-                    </form>
+                    <div method="get" class="form-inline">
+                        <input name="chr_name" class="form-control trans" placeholder="角色名字" type="text" id="chr_name" />
+                        <div class="button btn-primary" id="btn_submit">提交</div>
+                    </div>
                 </div>
             </div>
         </div>
         <div id="character">
-                <div class="left">
-                    <img v-bind:src="chr.SmallImage" class="img-responsive"/>
-                    <div style="color: #fff"> <h4>{{ chr.GroupName }} {{ chr.RoleName }}</h4> </div>
+            <div class="left">
+                <img v-bind:src="chr.SmallImage" class="img-responsive" />
+                <div style="color: #fff">
+                    <h4>{{ chr.GroupName }} {{ chr.RoleName }}</h4>
                 </div>
-                <div class="flow"> <img v-bind:src="chr.BigImage" class="img-responsive"/> </div>
+            </div>
+            <div class="flow"> <img v-bind:src="chr.BigImage" class="img-responsive" /> </div>
         </div>
 
     </div>
 
     <script type="text/javascript">
-        $("#chr_name").autocomplete({
-            source: function(request, response) { 
-                var name = request.term.trim();
-                if (name && name.length >= 1)
-                    $.ajax({
-                        type: "GET",
-                        url: "query_name?q=" + name,
-                        async: true,
-                        success: function (res) {
-                            if (res) {
-                                response(res);
-                            }
-                            else response([]);
-                        }
-                    });
-                else
-                    response([]);
-            }
-        });
-        
-        var character = new Vue({
-            el: "#character",
-            data: { 
-                chr: {
-                    BigImage: "",
-                    SmallImage: "",
-                    GroupName: "",
-                    RoleName: ""
-                }
-            }
-        });
-
-        $("#btn_submit").click(function (){
-            var name = $("#chr_name").val();
-            $.ajax({
-                type: "GET",
-                url: "query_chr?q=" + name,
-                async: true,
-                success: function (res) {
-                    if (res && res["success"]) { character.chr = res; }
-                }
-            });
-        });
     </script>
 </body>
+
 </html>

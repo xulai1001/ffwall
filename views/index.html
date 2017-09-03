@@ -12,37 +12,42 @@
     <![endif]-->
     <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"> </script>
     <script src="http://apps.bdimg.com/libs/jqueryui/1.10.4/jquery-ui.min.js"> </script>
-    <script src="http://apps.bdimg.com/libs/bootstrap/3.3.4/js/bootstrap.min.js"> </script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script src="https://vuejs.org/js/vue.js"> </script>
 
     <!-- styles -->
-    <link rel="stylesheet" href="http://apps.bdimg.com/libs/todc-bootstrap/3.1.1-3.2.1/todc-bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" href="http://apps.bdimg.com/libs/jqueryui/1.10.4/css/jquery-ui.min.css">
     <!--<link href="css/style.css" rel="stylesheet"> -->
- 
+    <style type="text/css">
+        body { background: #000 }
+    </style>
 </head>
 <body>
-    <div class="container">
+    <div class="container-fluid">
         <div class="jumbotron">
             <div class="input_group">
-                <form method="get">
+                <form method="get" class="form-inline">
                     <input name="chr_name" class="form-control" placeholder="角色名字" type="text" id="chr_name"/>
-                    <button type="button" class="button btn-primary btn-lg" id="btn_submit">提交</button>
+                    <button type="button" class="button btn-primary" id="btn_submit">提交</button>
                 </form>
             </div>
         </div>
-       <div id="character">
-            {{ chr.GroupName }} {{ chr.RoleName }}
-            <img v-bind:src="chr.SmallImage" />
-            <img v-bind:src="chr.BigImage" />
-       </div>
+        <div id="character" class="row">
+                <div class="col-md-2">
+                    <div class="col-md-12"> <img v-bind:src="chr.SmallImage" class="img-responsive"/> </div>
+                    <div class="col-md-12" style="color: #fff"> <h4>{{ chr.GroupName }} {{ chr.RoleName }}</h4> </div>
+                </div>
+                <div class="col-md-10"> <img v-bind:src="chr.BigImage" class="img-responsive"/> </div>
+        </div>
+
     </div>
 
     <script type="text/javascript">
         $("#chr_name").autocomplete({
             source: function(request, response) { 
                 var name = request.term.trim();
-                if (name && name.length >= 2)
+                if (name && name.length >= 1)
                     $.ajax({
                         type: "GET",
                         url: "query_name?q=" + name,

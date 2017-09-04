@@ -1,0 +1,12 @@
+<div id="character" class="main_wrapper">
+    <div class="left">
+        <img v-bind:src="chr.SmallImage" class="img-responsive" />
+        <div style="color: #fff">
+            <h4>{{ chr.GroupName }} </h4>
+            <h4>{{ chr.RoleName }} </h4>
+        </div>
+    </div>
+    <div class="flow">
+        <img v-bind:src="bigimg" class="img-responsive" id="bigimg" />
+    </div>
+</div>

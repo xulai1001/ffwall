@@ -23,11 +23,13 @@ $(document).ready(function() {
     var query_img = function(name) {
         $.ajax({
             type: "GET",
-            url: "query_chr?q=" + name,
+            url: "query_chr?q=" + encodeURI(name),
             async: true,
             success: function(res) {
                 if (res && res["success"]) {
                     character.chr = res;
+                    window.history.pushState(null, "FFX|V照片墙 - "+res["RoleName"], window.location.origin + "/" + res["Id"].toString());
+                    document.title = "FFX|V照片墙 - "+res["RoleName"];
                     img_preload.src = res["BigImage"];
                     $("#start_wrapper").css("display", "none");
                     $(".main_wrapper").css("display", "block");
@@ -42,19 +44,26 @@ $(document).ready(function() {
             if (name.length>=1) {
                 $.ajax({
                     type: "GET",
-                    url: "query_name?q=" + name,
+                    url: "query_name?q=" + encodeURI(name),
                     async: true,
                     success: function(res) {
                         if (res) {
-                            response(res);
+                            response(res.map(function (it) {
+                                return {
+                                    label: it["GroupName"] + " " + it["RoleName"],
+                                    id: it["Id"],
+                                    value: it["GroupName"] + " " + it["RoleName"]
+                                };
+                            }));
                         } else response([]);
                     }
                 });
             } else { response([]); }
         },
         minChars: 1,
-        scrollHeight: 300,
-        select: function(event, ui) { query_img(ui.item.value); } 
+        select: function(event, ui) {
+            query_img(ui.item.id);
+        } 
     });
 
     $("#chr_name").keydown(function(e) {
@@ -69,4 +78,7 @@ $(document).ready(function() {
         $(this).fadeIn(800); 
     });
 
+    $("#notice").modal();
+
+    if (chr_id > 0) { query_img(chr_id); } 
 });

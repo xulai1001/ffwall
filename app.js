@@ -16,8 +16,9 @@ app.get('/', function(req, res) {
 
 app.get('/query_name', function(req, res) {
     console.time("query_name");
-    var query = "select RoleName from ffwall where RoleName like \"%" + req.query.q.toString() + "%\"";
-    db.all(query, function(err, result) {
+    var q="%" + req.query.q + "%";
+    var query = db.prepare("select RoleName from ffwall where RoleName like $q");
+    query.all({$q: q}, function (err, result) {
         if (!err) {
             var ret = [];
             for (var i in result)
@@ -27,20 +28,21 @@ app.get('/query_name', function(req, res) {
             res.json(ret);
         } else { console.log(err); }
     });
+    query.finalize();
 });
 
 app.get('/query_chr', function(req, res) {
     console.time("query_chr");
-    var query = "select * from ffwall where RoleName = \"" + req.query.q.toString() + "\"";
-    db.all(query, function(err, result) {
+    var query = db.prepare("select * from ffwall where RoleName = $q");
+    query.get({$q: req.query.q}, function(err, result) {
         if (!err) {
-            if (result.length > 0) {
-                result[0]["success"] = true;
-                console.log("query_chr " + req.query.q + " - " + result[0]);
-                console.timeEnd("query_chr");
-                res.json(result[0]);
-            } else { res.json({ success: false }); }
-        } else { console.log(err); }
+            result["success"] = true;
+            res.json(result);
+            console.timeEnd("query_chr");
+        } else {
+            console.log(err);
+            res.json({success: false});
+        }
     });
 });
 

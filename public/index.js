@@ -23,7 +23,7 @@ $(document).ready(function() {
     var query_img = function(name) {
         $.ajax({
             type: "GET",
-            url: "query_chr?q=" + name,
+            url: "query_chr?q=" + encodeURI(name),
             async: true,
             success: function(res) {
                 if (res && res["success"]) {
@@ -42,7 +42,7 @@ $(document).ready(function() {
             if (name.length>=1) {
                 $.ajax({
                     type: "GET",
-                    url: "query_name?q=" + name,
+                    url: "query_name?q=" + encodeURI(name),
                     async: true,
                     success: function(res) {
                         if (res) {
@@ -68,4 +68,5 @@ $(document).ready(function() {
         $(this).fadeIn(800); 
     });
 
+    $("#notice").modal();
 });

@@ -28,7 +28,7 @@ $(document).ready(function() {
             success: function(res) {
                 if (res && res["success"]) {
                     character.chr = res;
-                    window.history.pushState(null, "FFX|V照片墙 - "+res["RoleName"], window.location.origin + "/" + res["Id"].toString());
+                    window.history.pushState(null, "FFX|V照片墙 - "+res["RoleName"], "http://viktorlab.net/ffwall/" + res["Id"].toString());
                     document.title = "FFX|V照片墙 - "+res["RoleName"];
                     img_preload.src = res["BigImage"];
                     $("#start_wrapper").css("display", "none");

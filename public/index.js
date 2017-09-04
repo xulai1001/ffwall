@@ -28,6 +28,8 @@ $(document).ready(function() {
             success: function(res) {
                 if (res && res["success"]) {
                     character.chr = res;
+                    window.history.pushState(null, "FFX|V照片墙 - "+res["RoleName"], window.location.origin + "/" + res["Id"].toString());
+                    document.title = "FFX|V照片墙 - "+res["RoleName"];
                     img_preload.src = res["BigImage"];
                     $("#start_wrapper").css("display", "none");
                     $(".main_wrapper").css("display", "block");
@@ -46,14 +48,22 @@ $(document).ready(function() {
                     async: true,
                     success: function(res) {
                         if (res) {
-                            response(res);
+                            response(res.map(function (it) {
+                                return {
+                                    label: it["GroupName"] + " " + it["RoleName"],
+                                    id: it["Id"],
+                                    value: it["GroupName"] + " " + it["RoleName"]
+                                };
+                            }));
                         } else response([]);
                     }
                 });
             } else { response([]); }
         },
         minChars: 1,
-        select: function(event, ui) { query_img(ui.item.value); } 
+        select: function(event, ui) {
+            query_img(ui.item.id);
+        } 
     });
 
     $("#chr_name").keydown(function(e) {
@@ -69,4 +79,6 @@ $(document).ready(function() {
     });
 
     $("#notice").modal();
+
+    if (chr_id > 0) { query_img(chr_id); } 
 });

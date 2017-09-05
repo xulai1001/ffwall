@@ -52,13 +52,26 @@ var query_img = function(name) {
                 //window.history.pushState(null, "FFX|V照片墙 - " + res["RoleName"], "http://viktorlab.net/ffwall/" + res["Id"].toString());
                 document.title = "FFX|V照片墙 - " + res["RoleName"];
                 img_preload.src = res["BigImage"];
-
+                $("#start_wrapper").css("display", "none");
+                $("#character").css("display", "block");
             }
         }
     });
 };
 
 $(document).ready(function() {
+    character = new Vue({
+        el: "#character",
+        data: {
+            chr: {
+                BigImage: "", // unused
+                SmallImage: "",
+                GroupName: "",
+                RoleName: ""
+            },
+            bigimg: ""
+        }
+    });
 
     img_preload.onload = function() {
         $("#bigimg").fadeTo(700, 0.3, function() {
@@ -90,7 +103,7 @@ $(document).ready(function() {
         },
         minChars: 1,
         select: function(event, ui) {
-            h_load("search.html");
+            //h_load("search.html");
             query_img(ui.item.id);
         }
     });
@@ -98,13 +111,13 @@ $(document).ready(function() {
     $("#chr_name").keydown(function(e) {
         event = event || window.event;
         if (event.keyCode == 13) {
-            h_load("search.html");
+            //h_load("search.html");
             query_img($("#chr_name").val())
         }
     });
 
     $("#btn_submit").click(function() {
-        h_load("search.html");
+        //h_load("search.html");
         query_img($("#chr_name").val())
     });
 

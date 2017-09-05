@@ -1,12 +1,14 @@
-<div id="character" class="main_wrapper">
-    <div class="left">
-        <img v-bind:src="chr.SmallImage" class="img-responsive" />
-        <div style="color: #fff">
+<div id="character" class="main_wrapper row">
+    <div class="left col-sm-2 hidden-xs">
+        <img v-bind:src="chr.SmallImage" class="img-responsive center-block" />
+        <div style="color: #fff;width:100%;">
             <h4>{{ chr.GroupName }} </h4>
             <h4>{{ chr.RoleName }} </h4>
         </div>
     </div>
-    <div class="flow">
-        <img v-bind:src="bigimg" class="img-responsive" id="bigimg" />
+    <div class="col-sm-10 col-xs-12" style="float:right;">
+        <div class="flow">
+            <img v-bind:src="bigimg" class="img-responsive" id="bigimg" />
+        </div>
     </div>
 </div>

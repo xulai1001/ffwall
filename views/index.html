@@ -29,33 +29,39 @@
 <body>
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-4 col-xs-12 trans">
-                <div id="logo">FFX|V照片墙</div>
-                <div class="input_group">
-                    <div class="form-inline">
-                        <input accept-charset="utf-8" name="chr_name" class="form-control" placeholder="请输入角色名字" type="text" id="chr_name" />
-                        <div class="button btn-primary" id="btn_submit">查&nbsp;&nbsp;&nbsp;询</div>
-                    </div>
-                </div>
-                <div class="nav_btn" data-toggle="collapse" data-target="#server-select">服务器</div>
-                <div class="collapse" id="server-select">
-                    <ul class="nav" style="clear:both">
-                        <li><a href="#">紫水栈桥</a></li>
-                        <li><a href="#">幻影群岛</a></li>
-                        <li><a href="#">拉诺西亚</a></li>
-                        <li><a href="#">静语庄园</a></li>
-                        <li><a href="#">神意之地</a></li>
-                        <li><a href="#">摩杜纳</a></li>
-                        <li><a href="#">萌芽池</a></li>
-                    </ul>
+            <div id="logo" class="col-md-3 col-xs-7 col-sm-3 col-lg-2">
+                <p>FFX|V照片墙</p>
+            </div>
+            <!-- <div id="server_btn" class="btn-group col-lg-1 col-md-2 col-xs-3 col-xs-offset-2 col-sm-offset-0  col-sm-2 ">
+                <div class="nav_btn" data-toggle="collapse" data-target="#server_list">服务器</div>
+            </div> -->
+            <div class="clearfix visible-xs"></div>
+            <div id="search_group" class="col-lg-3 col-md-5 col-xs-12 col-sm-6">
+                <div class="row">
+                    <input accept-charset="utf-8" name="chr_name" class="form-control col-md-9 col-xs-11" placeholder="请输入角色名字" type="text" id="chr_name" />
+                    <div class="button btn-primary col-md-2 col-xs-1" id="btn_submit">查&nbsp;&nbsp;&nbsp;询</div>
                 </div>
             </div>
-
         </div>
+
+        <div id="server_wrapper">
+            <ul class="nav collapse col-lg-1 col-md-2 col-xs-4 col-xs-offset-8 col-sm-offset-3 col-md-offset-3 col-lg-offset-2 col-sm-2" id="server_list" style="clear:both">
+                <li><a href="#">紫水栈桥</a></li>
+                <li><a href="#">幻影群岛</a></li>
+                <li><a href="#">拉诺西亚</a></li>
+                <li><a href="#">静语庄园</a></li>
+                <li><a href="#">神意之地</a></li>
+                <li><a href="#">摩杜纳</a></li>
+                <li><a href="#">萌芽池</a></li>
+            </ul>
+        </div>
+
         <div id="content_wrapper">
-            <div id="start_wrapper"></div>
+            <div id="start_wrapper" class="row"></div>
         </div>
     </div>
+
+
 </body>
 
 <footer>
@@ -82,7 +88,6 @@
         </div>
     </div>
 </div>
-
 <script type="text/javascript">
     var chr_id = <%=id || 0 %>;
 </script>

@@ -1,7 +1,7 @@
 var img_preload = new Image();
 var character;
 var c_url = "";
-var base_url = window.location.href.replace(/\/\d*$/, "/");
+
 var r_init = function() {
 
     if ($("#character").length > 0) {
@@ -14,9 +14,7 @@ var r_init = function() {
                     GroupName: "",
                     RoleName: ""
                 },
-                bigimg: "",
-                complete: 0,
-                details: {}
+                bigimg: ""
             }
         });
     }
@@ -51,30 +49,30 @@ var query_img = function(name) {
         success: function(res) {
             if (res && res["success"]) {
                 character.chr = res;
-                window.history.pushState(null, "FFX|V照片墙 - " + res["RoleName"], base_url + res["Id"].toString());
+                //window.history.pushState(null, "FFX|V照片墙 - " + res["RoleName"], "http://viktorlab.net/ffwall/" + res["Id"].toString());
                 document.title = "FFX|V照片墙 - " + res["RoleName"];
                 img_preload.src = res["BigImage"];
-                query_wy();
+                $("#start_wrapper").css("display", "none");
+                $("#character").css("display", "block");
             }
         }
     });
 };
 
-var query_wy = function() {
-    $.ajax({
-        type: "GET",
-        url: "query_wy?q=" + encodeURI(character.chr.uid),
-        async: true,
-        success: function(res) {
-            if (res && res["success"]) {
-                character.complete = res["complete"];
-                character.details = res["details"];
-            }
+$(document).ready(function() {
+
+    character = new Vue({
+        el: "#character",
+        data: {
+            chr: {
+                BigImage: "", // unused
+                SmallImage: "",
+                GroupName: "",
+                RoleName: ""
+            },
+            bigimg: ""
         }
     });
-}
-
-$(document).ready(function() {
 
     img_preload.onload = function() {
         $("#bigimg").fadeTo(700, 0.3, function() {
@@ -106,7 +104,7 @@ $(document).ready(function() {
         },
         minChars: 1,
         select: function(event, ui) {
-            h_load("search.html");
+            //h_load("search.html");
             query_img(ui.item.id);
         }
     });
@@ -114,13 +112,13 @@ $(document).ready(function() {
     $("#chr_name").keydown(function(e) {
         event = event || window.event;
         if (event.keyCode == 13) {
-            h_load("search.html");
+            //h_load("search.html");
             query_img($("#chr_name").val())
         }
     });
 
     $("#btn_submit").click(function() {
-        h_load("search.html");
+        //h_load("search.html");
         query_img($("#chr_name").val())
     });
 

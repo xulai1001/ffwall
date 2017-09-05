@@ -39,7 +39,7 @@
             <div id="search_group" class="col-lg-3 col-md-5 col-xs-12 col-sm-6">
                 <div class="row">
                     <input accept-charset="utf-8" name="chr_name" class="form-control col-md-9 col-xs-11" placeholder="请输入角色名字" type="text" id="chr_name" />
-                    <div class="button btn-primary col-md-2 col-xs-1" id="btn_submit">查询</div>
+                    <div class="button btn-primary col-md-2 col-xs-1" id="btn_submit">查&nbsp;&nbsp;&nbsp;询</div>
                 </div>
             </div>
         </div>
@@ -56,8 +56,22 @@
             </ul>
         </div>
 
-        <div id="content_wrapper">
+        <div id="content_wrapper" class="clearfix">
             <div id="start_wrapper" class="row"></div>
+            <div id="character" class="main_wrapper row" style="display: none;">
+                <div class=" left col-sm-2 hidden-xs ">
+                    <img v-bind:src="chr.SmallImage " class="img-responsive center-block " />
+                    <div style="color: #fff;width:100%; ">
+                        <h4>{{ chr.GroupName }} </h4>
+                        <h4>{{ chr.RoleName }} </h4>
+                    </div>
+                </div>
+                <div class="col-sm-10 col-xs-12 " style="float:right; ">
+                    <div class="flow ">
+                        <a v-bind:href="bigimg"><img v-bind:src="bigimg" class="img-responsive" id="bigimg" /></a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -65,30 +79,30 @@
 </body>
 
 <footer>
-    <p>Presented by: 黑魔导师库兰 & 生姜鱼饼猫球 <a data-toggle="modal" data-target="#notice" href="#">网站声明</a></p>
+    <p>Presented by: 黑魔导师库兰 & 生姜鱼饼猫球 <a data-toggle="modal " data-target="#notice " href="# ">网站声明</a></p>
     <p>最终幻想14 FinalFantasyX|V</p>
     <p>摩杜纳 绯红骑鸟团《绘海》欢迎萌新萌旧加入哦~</p>
-    <p><a href="http://viktorlab.net/ffwall/712">娜娜女装</a>真可爱！
+    <p><a href="http://viktorlab.net/ffwall/712 ">娜娜女装</a>真可爱！
     </p>
 </footer>
 
-<div class="modal fade" id="notice" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document" style="background: rgba(255, 255, 255, 0.8);margin-top:100px;">
-        <div class="modal-header">
-            <button class="close" type="button" data-dismiss="modal">×</button>
+<div class="modal fade " id="notice " tabindex="-1 " role="dialog ">
+    <div class="modal-dialog " role="document " style="background: rgba(255, 255, 255, 0.8);margin-top:100px; ">
+        <div class="modal-header ">
+            <button class="close " type="button " data-dismiss="modal ">×</button>
             <h3>声明</h3>
         </div>
-        <div class="modal-body">
+        <div class="modal-body ">
             <div>
                 <p>1. 目前手机访问调整中</p>
-                <p>2. 本站不存放任何图片，不支持上传功能，有需要的玩家请自行到<a href="http://act.ff.sdo.com/20170824UploadImg/index.html">官方活动页</a>参加活动.</p>
+                <p>2. 本站不存放任何图片，不支持上传功能，有需要的玩家请自行到<a href="http://act.ff.sdo.com/20170824UploadImg/index.html ">官方活动页</a>参加活动.</p>
                 <p>3. 本站所有图片引自官方活动页，仅为方便光之战士们找到自己和亲友，任何图片的版权都属于相应的上传玩家，请勿二次利用，严禁商用.</p>
                 <p>4. 用户在官方活动页面发表的图片仅代表个人观点，与本网站无关. </p>
             </div>
         </div>
     </div>
 </div>
-<script type="text/javascript">
+<script type="text/javascript ">
     var chr_id = <%=id || 0 %>;
 </script>
 

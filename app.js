@@ -76,6 +76,22 @@ app.get('/query_server', function(req, res) {
     query.finalize();
 });
 
+app.get('/query_wy', function(req, res){
+    console.time("query_wy");
+    var query = db.prepare("select * from ffwork where uid = $q");
+    query.get({ $q: req.query.q }, function(err, result) {
+        if (!err && result) {
+            result["success"] = true;
+            console.log(result["RoleName"]);
+            res.json(result);
+            console.timeEnd("query_wy");
+        } else {
+            if (err) console.log(err);
+            res.json({ success: false });
+        }
+    });
+});
+
 app.get('/:id?', function(req, res) {
     res.render("index", { id: req.params.id });
 });

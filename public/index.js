@@ -1,8 +1,7 @@
 var img_preload = new Image();
 var character;
 var c_url = "";
-var base_url = "http://viktorlab.net/ffwall/";
-
+var base_url = window.location.href.replace(/\/\d*$/, "/");
 var r_init = function() {
 
     if ($("#character").length > 0) {
@@ -15,7 +14,9 @@ var r_init = function() {
                     GroupName: "",
                     RoleName: ""
                 },
-                bigimg: ""
+                bigimg: "",
+                complete: 0,
+                details: {}
             }
         });
     }
@@ -53,11 +54,25 @@ var query_img = function(name) {
                 window.history.pushState(null, "FFX|V照片墙 - " + res["RoleName"], base_url + res["Id"].toString());
                 document.title = "FFX|V照片墙 - " + res["RoleName"];
                 img_preload.src = res["BigImage"];
-
+                query_wy();
             }
         }
     });
 };
+
+var query_wy = function() {
+    $.ajax({
+        type: "GET",
+        url: "query_wy?q=" + encodeURI(character.chr.uid),
+        async: true,
+        success: function(res) {
+            if (res && res["success"]) {
+                character.complete = res["complete"];
+                character.details = res["details"];
+            }
+        }
+    });
+}
 
 $(document).ready(function() {
 

@@ -30,18 +30,13 @@ img {
     padding-right: 3px;
 }
 
-.left {
-    width: 240px;
-    float: left;
-}
-
-.flow {
-    overflow: hidden;
-}
-
 .right-button {
     width: 120px;
     float: right;
+}
+
+#server_wrapper {
+    z-index: 99999;
 }
 
 .nav li {
@@ -50,11 +45,17 @@ img {
     margin: 0px;
 }
 
+.nav {
+    background-color: #B0ACAC;
+    padding: 0px;
+}
+
 .nav li a {
     text-align: center;
     font-family: "Microsoft YaHei", sans-serif;
     font-size: 16px;
     color: white;
+    padding: 10px 0px;
 }
 
 .nav li a:hover {
@@ -66,17 +67,15 @@ img {
 }
 
 .nav_btn {
-    font-size: 20px;
+    font-size: 22px;
     float: right;
-    line-height: 20px;
-    padding: 20px 15px;
+    line-height: 22px;
     cursor: pointer;
+    color: white;
 }
 
 #logo {
     float: left;
-    width: 20%;
-    padding: 15px;
     font-size: 30px;
     line-height: 30px;
     font-family: 'Microsoft Yahei', '微软雅黑', Arial, sans-serif;
@@ -87,6 +86,22 @@ img {
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    color: white;
+    height: 60px;
+    padding-right: 0px;
+}
+
+#server_btn {
+    float: left;
+    padding: 20px 10px 18px 10px;
+}
+
+#server_btn div {
+    margin: 0px auto;
+    width: 100%;
+    text-align: center;
 }
 
 #server-select {
@@ -99,12 +114,11 @@ img {
     background-color: rgba(11, 10, 10, 0.29);
 }
 
-.input_group {
-    padding: 15px;
+#search_group {
     float: right;
-    margin-right: 2%;
-    width: 25%;
-    height: 60px;
+    padding-top: 12px;
+    font-size: 18px;
+    padding-bottom: 15px;
 }
 
 .form_inline {
@@ -145,7 +159,6 @@ img {
 .row {
     width: 100%;
     margin: 0px;
-    height: 60px;
 }
 
 #start_wrapper {
@@ -156,16 +169,16 @@ img {
 
 .main_wrapper {
     margin: 20px auto;
-    width: 95%;
+    width: 100%;
+    padding: 0px;
 }
 
 .left {
-    width: 13%;
     margin: 0px;
-    float: left;
-    padding: 15px;
     background: rgba(255, 255, 255, 0.2);
     border-radius: 10px;
+    padding: 15px 10px;
+    width: 15%;
 }
 
 .left div {
@@ -173,12 +186,13 @@ img {
 }
 
 .flow {
-    width: 85%;
     margin: 0px;
     float: right;
-    padding: 15px;
     background: rgba(255, 255, 255, 0.2);
     border-radius: 10px;
+    padding: 15px 10px;
+    width: 100%;
+    overflow: hidden;
 }
 
 h4 {

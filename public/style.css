@@ -180,7 +180,7 @@ img {
 }
 
 .left {
-    margin: 0px;
+    margin: 0px 0px 0px 15px;
     background: rgba(255, 255, 255, 0.2);
     border-radius: 10px;
     padding: 15px 10px;
@@ -213,4 +213,9 @@ h4 {
     /* prevent horizontal scrollbar */
     overflow-x: hidden;
     padding-right: 20px;
+}
+
+#content_wrapper {
+    background: url(http://static.sdg-china.com/ff14/pic/web6/images/waper_conBg.jpg) no-repeat center top;
+    margin: 0px;
 }

@@ -60,6 +60,18 @@ var query_img = function(name) {
 };
 
 $(document).ready(function() {
+    character = new Vue({
+        el: "#character",
+        data: {
+            chr: {
+                BigImage: "", // unused
+                SmallImage: "",
+                GroupName: "",
+                RoleName: ""
+            },
+            bigimg: ""
+        }
+    });
 
     character = new Vue({
         el: "#character",

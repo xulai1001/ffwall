@@ -3,13 +3,13 @@
 var AV = require('leanengine');
 
 AV.init({
-  appId: process.env.LEANCLOUD_APP_ID,
-  appKey: process.env.LEANCLOUD_APP_KEY,
-  masterKey: process.env.LEANCLOUD_APP_MASTER_KEY
+  appId: process.env.LEANCLOUD_APP_ID || 'Y41WAIbTKkvn2SmIeUgEORLP-gzGzoHsz',
+  appKey: process.env.LEANCLOUD_APP_KEY || 'seADODGcWLYsyGhIEcF848ho',
+  masterKey: process.env.LEANCLOUD_APP_MASTER_KEY || '7Ghc915G46e39i2cSDDUQ5ya'
 });
 
 // 如果不希望使用 masterKey 权限，可以将下面一行删除
-AV.Cloud.useMasterKey();
+//AV.Cloud.useMasterKey();
 
 var app = require('./app');
 

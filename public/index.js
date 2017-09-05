@@ -1,6 +1,7 @@
 var img_preload = new Image();
 var character;
 var c_url = "";
+var base_url = "http://ffwall.leanapp.cn/";
 
 var r_init = function() {
 
@@ -49,7 +50,7 @@ var query_img = function(name) {
         success: function(res) {
             if (res && res["success"]) {
                 character.chr = res;
-                //window.history.pushState(null, "FFX|V照片墙 - " + res["RoleName"], "http://viktorlab.net/ffwall/" + res["Id"].toString());
+                window.history.pushState(null, "FFX|V照片墙 - " + res["RoleName"], base_url + res["Id"].toString());
                 document.title = "FFX|V照片墙 - " + res["RoleName"];
                 img_preload.src = res["BigImage"];
 

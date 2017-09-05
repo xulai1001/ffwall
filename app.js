@@ -1,14 +1,26 @@
+'use strict'
 var express = require('express');
-const path = require('path');
+var timeout = require('connect-timeout');
+var path = require('path');
+var cookieParser = require('cookie-parser');
+var bodyParser = require('body-parser');
+var AV = require('leanengine');
+
 var app = express();
 var sqlite3 = require('sqlite3').verbose();
-var db = new sqlite3.Database("db/db.sqlite3");
 
+var db = new sqlite3.Database("db/db.sqlite3");
+app.use(AV.express());
 app.use(express.static(path.join(__dirname, 'public')))
+// 设置默认超时时间
+app.use(timeout('15s'));
 
 app.engine(".html", require("ejs").__express);
-app.set("views", "./views");
+app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "html");
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cookieParser());
 
 app.get('/query_name', function(req, res) {
     console.time("query_name");
@@ -40,7 +52,7 @@ app.get('/query_chr', function(req, res) {
     query.get({ $q: q }, function(err, result) {
         if (!err && result) {
             result["success"] = true;
-            console.log(result);
+            console.log(result["RoleName"]);
             res.json(result);
             console.timeEnd("query_chr");
         } else {
@@ -67,11 +79,42 @@ app.get('/query_server', function(req, res) {
 app.get('/:id?', function(req, res) {
     res.render("index", { id: req.params.id });
 });
+
+
 //app.use(express.static("static"));
-
-var server = app.listen(process.env.PORT || 3005, function() {
-    var host = server.address().address;
-    var port = server.address().port;
-
-    console.log('Example app listening at http://%s:%s', host, port);
-});
+app.use(function(req, res, next) {
+    // 如果任何一个路由都没有返回响应，则抛出一个 404 异常给后续的异常处理器
+    if (!res.headersSent) {
+      var err = new Error('Not Found');
+      err.status = 404;
+      next(err);
+    }
+  });
+  
+  // error handlers
+  app.use(function(err, req, res, next) {
+    if (req.timedout && req.headers.upgrade === 'websocket') {
+      // 忽略 websocket 的超时
+      return;
+    }
+  
+    var statusCode = err.status || 500;
+    if (statusCode === 500) {
+      console.error(err.stack || err);
+    }
+    if (req.timedout) {
+      console.error('请求超时: url=%s, timeout=%d, 请确认方法执行耗时很长，或没有正确的 response 回调。', req.originalUrl, err.timeout);
+    }
+    res.status(statusCode);
+    // 默认不输出异常详情
+    var error = {};
+    if (app.get('env') === 'development') {
+      // 如果是开发环境，则将异常堆栈输出到页面，方便开发调试
+      error = err;
+    }
+    res.render('error', {
+      message: err.message,
+      error: error
+    });
+  });
+module.exports = app;

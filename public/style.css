@@ -214,3 +214,8 @@ h4 {
     overflow-x: hidden;
     padding-right: 20px;
 }
+
+#content_wrapper {
+    background: url(http://static.sdg-china.com/ff14/pic/web6/images/waper_conBg.jpg) no-repeat center top;
+    margin: 0px;
+}

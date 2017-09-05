@@ -1,7 +1,7 @@
 var img_preload = new Image();
 var character;
 var c_url = "";
-var base_url = "http://ffwall.leanapp.cn/";
+var base_url = "http://viktorlab.net/ffwall/";
 
 var r_init = function() {
 

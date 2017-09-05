@@ -1,7 +1,7 @@
 var img_preload = new Image();
 var character;
 var c_url = "";
-
+var base_url = window.location.href.replace(/\/\d*$/, "/");
 var r_init = function() {
 
     if ($("#character").length > 0) {
@@ -14,7 +14,9 @@ var r_init = function() {
                     GroupName: "",
                     RoleName: ""
                 },
-                bigimg: ""
+                bigimg: "",
+                complete: 0,
+                details: {}
             }
         });
     }
@@ -49,9 +51,11 @@ var query_img = function(name) {
         success: function(res) {
             if (res && res["success"]) {
                 character.chr = res;
-                //window.history.pushState(null, "FFX|V照片墙 - " + res["RoleName"], "http://viktorlab.net/ffwall/" + res["Id"].toString());
+                query_wy();
+                window.history.pushState(null, "FFX|V照片墙 - " + res["RoleName"], base_url + res["Id"].toString());
                 document.title = "FFX|V照片墙 - " + res["RoleName"];
                 img_preload.src = res["BigImage"];
+                
                 $("#start_wrapper").css("display", "none");
                 $("#character").css("display", "block");
             }
@@ -59,20 +63,22 @@ var query_img = function(name) {
     });
 };
 
-$(document).ready(function() {
-    character = new Vue({
-        el: "#character",
-        data: {
-            chr: {
-                BigImage: "", // unused
-                SmallImage: "",
-                GroupName: "",
-                RoleName: ""
-            },
-            bigimg: ""
+var query_wy = function() {
+    character.details={}
+    $.ajax({
+        type: "GET",
+        url: "query_wy?q=" + encodeURI(character.chr.uid),
+        async: true,
+        success: function(res) {
+            if (res && res["success"]) {
+                character.complete = res["complete"];
+                character.details = JSON.parse(res["details"]);
+            }
         }
     });
+};
 
+$(document).ready(function() {
     character = new Vue({
         el: "#character",
         data: {

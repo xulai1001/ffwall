@@ -187,10 +187,6 @@ img {
     width: 15%;
 }
 
-.left div {
-    height: 100%;
-}
-
 .flow {
     margin: 0px;
     float: right;
@@ -218,4 +214,64 @@ h4 {
 #content_wrapper {
     background: url(http://static.sdg-china.com/ff14/pic/web6/images/waper_conBg.jpg) no-repeat center top;
     margin: 0px;
+}
+
+#wy_details {
+    margin-top: 15px;
+}
+
+#wy_details p {
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+}
+
+#wy_details {
+    margin-top: 15px;
+}
+
+#wy_details p {
+    width: 80%;
+    margin: 5px auto;
+    height: 22px;
+}
+
+#wy_details p span {
+    float: right;
+}
+
+#wy_btn {
+    cursor: pointer;
+    font-size: 12px;
+    background-color: #1AD4F7;
+    padding: 3px;
+    border-radius: 3px;
+    margin: 0px;
+    vertical-align: middle;
+}
+
+.progress {
+    height: 10px;
+    margin-bottom: 10px;
+}
+
+.b-success {
+    border-radius: 2px;
+    background-color: #0FBF5C;
+    padding: 0px 4px 0px 4px;
+    text-align: center;
+    vertical-align: middle;
+    height: 20px;
+    line-height: 20px;
+}
+
+.b-failed {
+    border-radius: 2px;
+    background-color: #FC0F0F;
+    padding: 0px 4px 0px 4px;
+    text-align: center;
+    vertical-align: middle;
+    height: 20px;
+    line-height: 20px;
 }

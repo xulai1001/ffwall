@@ -63,7 +63,7 @@
                     <img v-bind:src="chr.SmallImage " class="img-responsive center-block " />
                     <div style="color: #fff;width:100%; ">
                         <h4>{{ chr.GroupName }} </h4>
-                        <h4>{{ chr.RoleName }} </h4>
+                        <h4>{{ chr.RoleName }} <span id="wy_btn" data-toggle="collapse" data-target="#wy_details">伟业</span></h4>
                     </div>
                 </div>
                 <div class="col-sm-10 col-xs-12 " style="float:right; ">
@@ -71,20 +71,21 @@
                         <a v-bind:href="bigimg" target="_blank"><img v-bind:src="bigimg" class="img-responsive" id="bigimg" /></a>
                     </div>
                 </div>
-                <div class="left col-sm-2" v-if="details" style="color: #fff">
-                    <p>伟业完成情况(至9.3)</p>
-                    <p>整体: <span v-if="details.complete>0">完成!</span><span v-else>x</span></p>
-                    <p>奥丁装备: <span v-if="details.odin">{{ details.odin.value }} / 3</span><span v-else>-</span></p>
-                    <p>女王: <span v-if="details.queen">o</span><span v-else>x</span> </p>
-                    <p>夜光花: <span v-if="details.flower">o</span><span v-else>x</span> </p>
-                    <p>贝爷: <span v-if="details.behemoth">o</span><span v-else>x</span> </p>
-                    <p>A2s: <span v-if="details.a2s">{{ details.a2s.value }} / 5</span><span v-else>-</span> </p>
-                    <p>A6s: <span v-if="details.a6s">{{ details.a6s.value }} / 5</span><span v-else>-</span> </p>
-                    <p>A10s: <span v-if="details.a10s">{{ details.a10s.value }} / 5</span><span v-else>-</span> </p>
-                    <p>刷鸟: <span v-if="details.bird">{{ details.bird.value }} / 5</span><span v-else>-</span> </p>
-                    <p>血誓: <span v-if="details.ally">o</span><span v-else>x</span> </p>
-               <!--   {{ details }}  -->
-                </div>
+                <template v-if="details">
+                    <div id="wy_details" class="collapse left col-sm-2 hidden-xs " style="color: #fff">
+                        <h2 class="lead text-center">伟业情况: <span v-if="details.complete>0"class="b-success">完&nbsp;&nbsp;&nbsp;&nbsp;成</span><span v-else class="b-failed">未完成</span></h2>
+                        <p>豹&nbsp;&nbsp;女&nbsp;&nbsp;王 : <span v-if="details.queen"class="b-success">完&nbsp;&nbsp;&nbsp;&nbsp;成</span><span v-else class="b-failed">未完成</span></p>
+                        <p>夜&nbsp;&nbsp;光&nbsp;&nbsp;花 : <span v-if="details.flower"class="b-success">完&nbsp;&nbsp;&nbsp;&nbsp;成</span><span v-else class="b-failed">未完成</span></p>
+                        <p>贝希摩斯 : <span v-if="details.behemoth"class="b-success">完&nbsp;&nbsp;&nbsp;&nbsp;成</span><span v-else class="b-failed">未完成</span></p>
+                        <p>蛮族好感 : <span v-if="details.ally"class="b-success">完&nbsp;&nbsp;&nbsp;&nbsp;成</span><span v-else class="b-failed">未完成</span></p>
+                        <p>蛮神坐骑 : <span v-if="details.bird"class="b-success">&nbsp;{{ details.bird.value }}&nbsp;&nbsp;/&nbsp;&nbsp;5&nbsp;</span><span v-else class="b-failed">&nbsp;0&nbsp;&nbsp;/&nbsp;&nbsp;5&nbsp;</span> </p>
+                        <p>零式二层 : <span v-if="details.a2s"class="b-success">&nbsp;{{ details.a2s.value }}&nbsp;&nbsp;/&nbsp;&nbsp;5&nbsp;</span><span v-else class="b-failed">&nbsp;0&nbsp;&nbsp;/&nbsp;&nbsp;5&nbsp;</span> </p>
+                        <p>零式六层 : <span v-if="details.a6s"class="b-success">&nbsp;{{ details.a6s.value }}&nbsp;&nbsp;/&nbsp;&nbsp;5&nbsp;</span><span v-else class="b-failed">&nbsp;0&nbsp;&nbsp;/&nbsp;&nbsp;5&nbsp;</span> </p>
+                        <p>零式十层 : <span v-if="details.a10s"class="b-success">&nbsp;{{ details.a10s.value }}&nbsp;&nbsp;/&nbsp;&nbsp;5&nbsp;</span><span v-else class="b-failed">&nbsp;0&nbsp;&nbsp;/&nbsp;&nbsp;5&nbsp;</span> </p>
+                        <p>奥丁装备 : <span v-if="details.odin" class="b-success">&nbsp;{{ details.odin.value }}&nbsp;&nbsp;/&nbsp;&nbsp;3&nbsp;</span><span v-else class="b-failed">&nbsp;0&nbsp;&nbsp;/&nbsp;&nbsp;3&nbsp;</span></p>
+                        <!--   {{ details }}  -->
+                    </div>
+                </template>
             </div>
         </div>
     </div>

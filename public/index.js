@@ -156,4 +156,5 @@ $(document).ready(function() {
     $("#notice").modal();
 
     if (chr_id > 0) { query_img(chr_id); }
+    if ($(window).width() < 768) { $("#wy_details").collapse('show');}
 });

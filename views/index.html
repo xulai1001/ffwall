@@ -30,7 +30,7 @@
     <div class="container-fluid">
         <div class="row">
             <div id="logo" class="col-md-3 col-xs-7 col-sm-3 col-lg-2">
-                <p>FFX|V照片墙</p>
+                <p><a style="text-decoration: none; color: #ddd" href="/">FFX|V照片墙</a></p>
             </div>
             <!-- <div id="server_btn" class="btn-group col-lg-1 col-md-2 col-xs-3 col-xs-offset-2 col-sm-offset-0  col-sm-2 ">
                 <div class="nav_btn" data-toggle="collapse" data-target="#server_list">服务器</div>
@@ -59,30 +59,30 @@
         <div id="content_wrapper" class="clearfix">
             <div id="start_wrapper" class="row"></div>
             <div id="character" class="main_wrapper row" style="display: none;">
-                <div class=" left col-sm-2 hidden-xs ">
+                <div class=" left hidden-xs col-sm-3 col-md-3 col-lg-2">
                     <img v-bind:src="chr.SmallImage " class="img-responsive center-block " />
                     <div style="color: #fff;width:100%; ">
                         <h4>{{ chr.GroupName }} </h4>
                         <h4>{{ chr.RoleName }} <span id="wy_btn" data-toggle="collapse" data-target="#wy_details">伟业</span></h4>
                     </div>
                 </div>
-                <div class="col-sm-10 col-xs-12 " style="float:right; ">
-                    <div class="flow ">
+                <div class="col-sm-9 col-md-9 col-lg-10 col-xs-12" style="float:right; ">
+                    <div class="flow">
                         <a v-bind:href="bigimg" target="_blank"><img v-bind:src="bigimg" class="img-responsive" id="bigimg" /></a>
                     </div>
                 </div>
                 <template v-if="details">
-                    <div id="wy_details" class="collapse left col-sm-2 hidden-xs " style="color: #fff">
-                        <h2 class="lead text-center">伟业情况: <span v-if="details.complete>0"class="b-success">完&nbsp;&nbsp;&nbsp;&nbsp;成</span><span v-else class="b-failed">未完成</span></h2>
-                        <p>豹&nbsp;&nbsp;女&nbsp;&nbsp;王 : <span v-if="details.queen"class="b-success">完&nbsp;&nbsp;&nbsp;&nbsp;成</span><span v-else class="b-failed">未完成</span></p>
-                        <p>夜&nbsp;&nbsp;光&nbsp;&nbsp;花 : <span v-if="details.flower"class="b-success">完&nbsp;&nbsp;&nbsp;&nbsp;成</span><span v-else class="b-failed">未完成</span></p>
-                        <p>贝希摩斯 : <span v-if="details.behemoth"class="b-success">完&nbsp;&nbsp;&nbsp;&nbsp;成</span><span v-else class="b-failed">未完成</span></p>
-                        <p>蛮族好感 : <span v-if="details.ally"class="b-success">完&nbsp;&nbsp;&nbsp;&nbsp;成</span><span v-else class="b-failed">未完成</span></p>
-                        <p>蛮神坐骑 : <span v-if="details.bird"class="b-success">&nbsp;{{ details.bird.value }}&nbsp;&nbsp;/&nbsp;&nbsp;5&nbsp;</span><span v-else class="b-failed">&nbsp;0&nbsp;&nbsp;/&nbsp;&nbsp;5&nbsp;</span> </p>
-                        <p>零式二层 : <span v-if="details.a2s"class="b-success">&nbsp;{{ details.a2s.value }}&nbsp;&nbsp;/&nbsp;&nbsp;5&nbsp;</span><span v-else class="b-failed">&nbsp;0&nbsp;&nbsp;/&nbsp;&nbsp;5&nbsp;</span> </p>
-                        <p>零式六层 : <span v-if="details.a6s"class="b-success">&nbsp;{{ details.a6s.value }}&nbsp;&nbsp;/&nbsp;&nbsp;5&nbsp;</span><span v-else class="b-failed">&nbsp;0&nbsp;&nbsp;/&nbsp;&nbsp;5&nbsp;</span> </p>
-                        <p>零式十层 : <span v-if="details.a10s"class="b-success">&nbsp;{{ details.a10s.value }}&nbsp;&nbsp;/&nbsp;&nbsp;5&nbsp;</span><span v-else class="b-failed">&nbsp;0&nbsp;&nbsp;/&nbsp;&nbsp;5&nbsp;</span> </p>
-                        <p>奥丁装备 : <span v-if="details.odin" class="b-success">&nbsp;{{ details.odin.value }}&nbsp;&nbsp;/&nbsp;&nbsp;3&nbsp;</span><span v-else class="b-failed">&nbsp;0&nbsp;&nbsp;/&nbsp;&nbsp;3&nbsp;</span></p>
+                    <div id="wy_details" class="collapse left col-xs-12 col-sm-3 col-md-3 col-lg-2" style="color: #fff">
+                        <h2 class="lead text-center">伟业情况: <span v-if="details.complete>0" class="btag b-success">完成</span><span v-else class="btag b-failed">未完成</span></h2>
+                        <p>女王 : <span v-html="render_wy('queen')" /></p>
+                        <p>夜光花 : <span v-html="render_wy('flower')" /></p>
+                        <p>贝爷 : <span v-html="render_wy('behemoth')" /></p>
+                        <p>血誓 : <span v-html="render_wy('ally')" /></p>
+                        <p>猎鹰 : <span v-html="render_wy('bird', 5)" /> </p>
+                        <p>A2s : <span v-html="render_wy('a2s', 5)" /> </p>
+                        <p>A6s : <span v-html="render_wy('a6s', 5)" /> </p>
+                        <p>A10s : <span v-html="render_wy('a10s', 5)" /> </p>
+                        <p>奥丁装备 : <span v-html="render_wy('odin')" /></p>
                         <!--   {{ details }}  -->
                     </div>
                 </template>

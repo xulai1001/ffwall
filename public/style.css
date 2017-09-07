@@ -177,14 +177,13 @@ img {
     margin: 20px auto;
     width: 100%;
     padding: 0px;
+
 }
 
 .left {
-    margin: 0px 0px 0px 15px;
     background: rgba(255, 255, 255, 0.2);
     border-radius: 10px;
     padding: 15px 10px;
-    width: 15%;
 }
 
 .flow {
@@ -256,22 +255,15 @@ h4 {
     margin-bottom: 10px;
 }
 
-.b-success {
+.btag {
     border-radius: 2px;
-    background-color: #0FBF5C;
-    padding: 0px 4px 0px 4px;
+    padding: 1px 4px 2px 4px;
     text-align: center;
     vertical-align: middle;
     height: 20px;
-    line-height: 20px;
+    line-height: 22px;
+    font-family: 'consolas', 'Microsoft Yahei', monospace;
 }
-
-.b-failed {
-    border-radius: 2px;
-    background-color: #FC0F0F;
-    padding: 0px 4px 0px 4px;
-    text-align: center;
-    vertical-align: middle;
-    height: 20px;
-    line-height: 20px;
-}
+.b-success { background-color: #00C214; }
+.b-failed { background-color: #D83838;}
+.b-warn { background-color: #E18F1F;}

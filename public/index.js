@@ -2,46 +2,27 @@ var img_preload = new Image();
 var character;
 var c_url = "";
 var base_url = window.location.href.replace(/\/\d*$/, "/");
-var r_init = function() {
+//var r_init = function() {}
 
-    if ($("#character").length > 0) {
-        character = new Vue({
-            el: "#character",
-            data: {
-                chr: {
-                    BigImage: "", // unused
-                    SmallImage: "",
-                    GroupName: "",
-                    RoleName: ""
-                },
-                bigimg: "",
-                complete: 0,
-                details: {}
-            }
-        });
-    }
-}
+// var h_load = function(h_url) {
 
-var h_load = function(h_url) {
-
-    if (c_url != h_url) {
-        c_url = h_url;
-        $("#content_wrapper").load(h_url, function(res) {
-            r_init();
-        });
-
-        /*$.ajax({
-            type: "post",
-            url: "search.html",
-            dataType: 'html',
-            async: false,
-            success: function(res) {
-                $("#content_wrapper").html(res);
-                r_init();
-            }
-        });*/
-    }
-}
+//     if (c_url != h_url) {
+//         c_url = h_url;
+//         $("#content_wrapper").load(h_url, function(res) {
+//             r_init();
+//         });
+//         /*$.ajax({
+//             type: "post",
+//             url: "search.html",
+//             dataType: 'html',
+//             async: false,
+//             success: function(res) {
+//                 $("#content_wrapper").html(res);
+//                 r_init();
+//             }
+//         });*/
+//     }
+// }
 
 var query_img = function(name) {
     $.ajax({
@@ -88,7 +69,24 @@ $(document).ready(function() {
                 GroupName: "",
                 RoleName: ""
             },
-            bigimg: ""
+            bigimg: "",
+            complete: 0,
+            details: {}
+        },
+        methods: {
+            render_wy: function (key, max) {
+                var v = this.details[key];
+                var cls = "btag ";
+                var line = "";
+                if (!v) { cls += "b-failed"; line=" 未完成 "; }
+                else if (v == true) { cls += "b-success"; line=" 已完成 "; }
+                else {
+                    console.log(v.value);
+                    line = "  " + v.value.toString() + "  /  " + max.toString() + "  ";
+                    if (v.ok) { cls+="b-success"; } else cls+="b-warn";
+                }
+                return '<span class="' + cls + '">' + line + '</span>';
+            }
         }
     });
 

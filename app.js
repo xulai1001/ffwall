@@ -25,7 +25,7 @@ app.use(cookieParser());
 app.get('/query_name', function(req, res) {
     console.time("query_name");
     var q = "%" + req.query.q + "%";
-    var query = db.prepare("select * from ffwall where RoleName like $q");
+    var query = db.prepare("select * from ffwall where RoleName like $q order by GroupId");
     query.all({ $q: q }, function(err, result) {
         if (!err) {
             console.log("query_name " + req.query.q + " - " + result.length + " results");
@@ -48,7 +48,7 @@ app.get('/query_chr', function(req, res) {
         q = parseInt(q);
     }
 
-    var query = db.prepare("select * from ffwall where " + cond);
+    var query = db.prepare("select * from ffwall where " + cond + " collate nocase");
     query.get({ $q: q }, function(err, result) {
         if (!err && result) {
             result["success"] = true;

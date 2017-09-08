@@ -7,6 +7,7 @@ require "digest"
 $db = SQLite3::Database.new "../db/db.sqlite3"
 $api_root = "http://act.ff.sdo.com/20170824UploadImg/Server/ImgService.ashx"
 $m = Mechanize.new
+$m.user_agent_alias = "Windows Firefox" 
 $interval = ARGV[0].to_i || 8
 
 def api_call(meth)

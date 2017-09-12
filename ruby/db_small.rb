@@ -20,7 +20,7 @@ tot = $img.keys.size
 puts "Total #{tot}"
 count = 0
 
-$img.keys.shuffle.each do |i|
+$img.keys.each do |i|
     begin
         count += 1
         ext = $img[i][/\.\w+$/]
